@@ -20,7 +20,8 @@ function newEmployee() {
             choices: [
                 'Manager',
                 'Intern',
-                'Engineer'
+                'Engineer',
+                'Employee'
             ]
         },
         {
@@ -41,6 +42,8 @@ function newEmployee() {
         //depending on what they pick is what we will prompt them to do next
     ]).then(({ position, name, email, id }) => {
         switch (position) {
+
+
             case 'Manager':
                 inquirer.prompt([
                     {
@@ -60,12 +63,65 @@ function newEmployee() {
 
                 })
                 break;
+
+
             case 'Intern':
+                inquirer.prompt([
+                    {
+                        type: 'input',
+                        name: 'school',
+                        message: 'What school does this employee go to?'
+                    }
+                ]).then(({ school }) => {
+                    employees.push(new Intern(
+                        name,
+                        id,
+                        email,
+                        school
+                    ))
+
+                    anotherEmployee()
+                })
                 break;
+
+
             case 'Engineer':
+                inquirer.prompt([
+                    {
+                        type: 'input',
+                        name: 'github',
+                        message: 'What is the engineers github username?'
+                    }
+                ]).then(({ github }) => {
+                    employees.push(new Engineer(
+                        name,
+                        id,
+                        email,
+                        github
+                    ))
+
+                    anotherEmployee()
+                })
                 break;
+
+
             default:
-            // for an uhoh
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'role',
+                    message: 'What is this employees role?'
+                }
+            ]).then(({ role }) => {
+                employees.push(new Employee(
+                    name,
+                    id,
+                    email,
+                    role
+                ))
+
+                anotherEmployee()
+            })
         }
     })
 
@@ -77,7 +133,7 @@ function anotherEmployee() {
         {
             type: 'confirm',
             name: 'more',
-            message: 'Create another employee?'
+            message: 'Create another employee profile?'
         }
         //if no more employees, render the HTML
     ]).then(({ more }) => {
@@ -87,20 +143,32 @@ function anotherEmployee() {
 }
 //when the employees get their name, write it in a file
 //using map bc we have an array and are trying to get an array
+
+
+//how do i get it to show on html for the specific subclass without bug
+//how to connect bootstrap and style
+
 function renderHTMLFile() {
     fs.writeFileSync('./index.html', /*html*/ `
         <ul>
             ${employees.map(employee => /*html*/ `
                 <li>
                     <div>
-                        <h1>${employee.getName()}</h1>
+                        <h1>${employee.getRole()}<h1>
+                        <h2>${employee.getName()}</h2>
                         <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}<a>
+                        <p>${employee.getId()}<p>
                         <a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}<a>
+
+
                     </div>
                 </li>
             `)}
         </ul>
+
     `)
 }
 
-newEmployee()
+
+
+newEmployee();
