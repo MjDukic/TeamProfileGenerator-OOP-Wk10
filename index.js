@@ -106,22 +106,22 @@ function newEmployee() {
 
 
             default:
-            inquirer.prompt([
-                {
-                    type: 'input',
-                    name: 'role',
-                    message: 'What is this employees role?'
-                }
-            ]).then(({ role }) => {
-                employees.push(new Employee(
-                    name,
-                    id,
-                    email,
-                    role
-                ))
+                inquirer.prompt([
+                    {
+                        type: 'input',
+                        name: 'role',
+                        message: 'What is this employees role?'
+                    }
+                ]).then(({ role }) => {
+                    employees.push(new Employee(
+                        name,
+                        id,
+                        email,
+                        role
+                    ))
 
-                anotherEmployee()
-            })
+                    anotherEmployee()
+                })
         }
     })
 
@@ -150,14 +150,30 @@ function anotherEmployee() {
 
 function renderHTMLFile() {
     fs.writeFileSync('./index.html', /*html*/ `
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MY TEAM</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  
+</head>
         <ul>
             ${employees.map(employee => /*html*/ `
                 <li>
                     <div>
                         <h1>${employee.getRole()}<h1>
                         <h2>${employee.getName()}</h2>
-                        <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}<a>
-                        <p>${employee.getId()}<p>
+                        <h3>The ID : ${employee.getId()}<h3>
+                        <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}<a><br>
                         <a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}<a>
 
 
