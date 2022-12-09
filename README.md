@@ -39,5 +39,4 @@ The following image shows a mock-up of the generated HTML’s appearance and fun
 
 ![LINK TO WALKTHROUGH VIDEO:] https://drive.google.com/file/d/1952kyK9IGq26sHPcxjmpAYua1jq2OEj5/view
 
-The styling in the image is just an example, so feel free to add your own.
 
