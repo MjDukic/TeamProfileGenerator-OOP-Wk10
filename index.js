@@ -105,7 +105,7 @@ function newEmployee() {
                 break;
 
 
-            default:
+            case 'Employee':
                 inquirer.prompt([
                     {
                         type: 'input',
@@ -146,8 +146,6 @@ function anotherEmployee() {
 //when the employees get their name, write it in a file
 //using map bc we have an array and are trying to get an array
 
-
-//how do i get it to show on html for the specific subclass without bug
 //how to connect bootstrap and style
 
 
@@ -170,15 +168,51 @@ function renderHTMLFile() {
   
 </head>
         <ul>
-            ${employees.map(employee => /*html*/ `
-                <div>
-                    <h1>${employee.getRole()}<h1>
-                    <h2>${employee.getName()}</h2>
-                    <h3>ID: ${employee.getId()}<h3>
-                    <h3>${employee.getEmployeeDetail()}<h3>
-                    <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}<a><br>
-                </div>
-            `)}
+            ${employees.map(employee => {
+                switch(employee.getRole()) {
+                    case 'Manager':
+                        return /*html*/ `
+                        <div>
+                            <h1>${employee.getRole()}<h1>
+                            <h2>${employee.getName()}<h2>
+                            <h3>ID: ${employee.getId()}<h3>
+                            <h3>${employee.getEmployeeDetail()}<h3>
+                            <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><br>
+                        </div>
+                    `
+                    case 'Engineer':
+                        return /*html*/ `
+                        <div>
+                            <h1>${employee.getRole()}<h1>
+                            <h2>${employee.getName()}<h2>
+                            <h3>ID: ${employee.getId()}<h3>
+                            <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><br>
+                            <a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}</a>
+                        </div>
+                    `
+                    case 'Intern':
+                        return /*html*/ `
+                        <div>
+                            <h1>${employee.getRole()}<h1>
+                            <h2>${employee.getName()}<h2>
+                            <h3>ID: ${employee.getId()}<h3>
+                            <h3>${employee.getEmployeeDetail()}<h3>
+                            <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><br>
+                        </div>
+                    `
+                    case 'Employee':
+                        return /*html*/ `
+                        <div>
+                            <h1>${employee.getRole()}<h1>
+                            <h2>${employee.getName()}<h2>
+                            <h3>ID: ${employee.getId()}<h3>
+                            <h3>${employee.getEmployeeDetail()}<h3>
+                            <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><br>
+                        </div>
+                    `
+                }
+
+            })}
         </ul>
 
     `)
