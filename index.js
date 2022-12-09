@@ -20,8 +20,7 @@ function newEmployee() {
             choices: [
                 'Manager',
                 'Intern',
-                'Engineer',
-                'Employee'
+                'Engineer'
             ]
         },
         {
@@ -105,25 +104,6 @@ function newEmployee() {
                 break;
 
 
-            case 'Employee':
-                inquirer.prompt([
-                    {
-                        type: 'input',
-                        name: 'role',
-                        message: 'What is this employees role?'
-                    }
-                ]).then(({ role }) => {
-                    employees.push(new Employee(
-                        name,
-                        id,
-                        email,
-                        role
-                    ))
-
-                    anotherEmployee()
-                })
-
-
         }
     })
 
@@ -148,6 +128,8 @@ function anotherEmployee() {
 
 //how to connect bootstrap and style
 
+/* <div class="d-flex justify-content-between">...</div> */
+
 
 function renderHTMLFile() {
     fs.writeFileSync('./index.html', /*html*/ `
@@ -169,7 +151,7 @@ function renderHTMLFile() {
 </head>
 
 <header style="text-align: center; font-size: 40px; font-weight: bolder; background-color: rgb(94, 166, 199); color: whitesmoke;" > MY TEAMS PROFILE </header>
-        <ul class=".row-cols-3" style="text-align: center;" >
+        <div class="row main" style="text-align: center;" >
             ${employees.map(employee => {
         switch (employee.getRole()) {
             case 'Manager':
@@ -194,8 +176,7 @@ function renderHTMLFile() {
                             <h3 class="list-group-item">${employee.getId()}<h3>
                             <h3 class="list-group-item"> <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><h3>
                             <h3 class="list-group-item"><a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}</a><h3>
-                        </div>
-                    `
+                        </div>`
             case 'Intern':
                 return /*html*/ `
                         <div class="card" style="width: 16rem;">
@@ -206,26 +187,11 @@ function renderHTMLFile() {
                             <h3 class="list-group-item">${employee.getId()}<h3>
                             <h3 class="list-group-item">${employee.getEmployeeDetail()}<h3>
                             <h3 class="list-group-item"> <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><h3>
-                        </div>
-                    `
-            case 'Employee':
-                return /*html*/ `
-                        <div class="card" style="width: 18rem;">
-                        <div class="card-header">
-                            <h1>${employee.getRole()}<h1>
-                        </div>
-                            <h3 class="list-group-item">${employee.getName()}<h3>
-                            <h3 class="list-group-item">${employee.getId()}<h3>
-                            <h3 class="list-group-item">${employee.getEmployeeDetail()}<h3>
-                            <h3 class="list-group-item"> <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><h3>
-                        </div>
-                    `
+                        </div>`
         }
 
     })}
-        </ul>
-
-    `)
+        </div>`)
 }
 
 
