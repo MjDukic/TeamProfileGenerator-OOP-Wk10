@@ -123,7 +123,7 @@ function newEmployee() {
                     anotherEmployee()
                 })
 
-                
+
         }
     })
 
@@ -167,52 +167,62 @@ function renderHTMLFile() {
   
   
 </head>
-        <ul>
-            ${employees.map(employee => {
-                switch(employee.getRole()) {
-                    case 'Manager':
-                        return /*html*/ `
-                        <div>
-                            <h1>${employee.getRole()}<h1>
-                            <h2>${employee.getName()}<h2>
-                            <h3>ID: ${employee.getId()}<h3>
-                            <h3>${employee.getEmployeeDetail()}<h3>
-                            <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><br>
-                        </div>
-                    `
-                    case 'Engineer':
-                        return /*html*/ `
-                        <div>
-                            <h1>${employee.getRole()}<h1>
-                            <h2>${employee.getName()}<h2>
-                            <h3>ID: ${employee.getId()}<h3>
-                            <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><br>
-                            <a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}</a>
-                        </div>
-                    `
-                    case 'Intern':
-                        return /*html*/ `
-                        <div>
-                            <h1>${employee.getRole()}<h1>
-                            <h2>${employee.getName()}<h2>
-                            <h3>ID: ${employee.getId()}<h3>
-                            <h3>${employee.getEmployeeDetail()}<h3>
-                            <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><br>
-                        </div>
-                    `
-                    case 'Employee':
-                        return /*html*/ `
-                        <div>
-                            <h1>${employee.getRole()}<h1>
-                            <h2>${employee.getName()}<h2>
-                            <h3>ID: ${employee.getId()}<h3>
-                            <h3>${employee.getEmployeeDetail()}<h3>
-                            <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><br>
-                        </div>
-                    `
-                }
 
-            })}
+<header style="text-align: center; font-size: 40px; font-weight: bolder; background-color: rgb(94, 166, 199); color: whitesmoke;" > MY TEAMS PROFILE </header>
+        <ul class=".row-cols-3" style="text-align: center;" >
+            ${employees.map(employee => {
+        switch (employee.getRole()) {
+            case 'Manager':
+                return /*html*/ `
+                        <div class="card" style="width: 18rem;" style= "margin: 5px;">
+                        <div class="card-header">
+                            <h1>${employee.getRole()}<h1>
+                        </div>
+                            <h3 class="list-group-item">${employee.getName()}<h3>
+                            <h3 class="list-group-item">${employee.getId()}<h3>
+                            <h3 class="list-group-item">${employee.getEmployeeDetail()}<h3>
+                            <h3 class="list-group-item"> <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><h3>
+                        </div>
+                    `
+            case 'Engineer':
+                return /*html*/ `
+                        <div class="card" style="width: 18rem;">
+                        <div class="card-header">
+                            <h1>${employee.getRole()}<h1>
+                        </div>
+                            <h3 class="list-group-item">${employee.getName()}<h3>
+                            <h3 class="list-group-item">${employee.getId()}<h3>
+                            <h3 class="list-group-item"> <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><h3>
+                            <h3 class="list-group-item"><a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}</a><h3>
+                        </div>
+                    `
+            case 'Intern':
+                return /*html*/ `
+                        <div class="card" style="width: 16rem;">
+                         <div class="card-header">
+                            <h1>${employee.getRole()}<h1>
+                        </div>
+                            <h3 class="list-group-item">${employee.getName()}<h3>
+                            <h3 class="list-group-item">${employee.getId()}<h3>
+                            <h3 class="list-group-item">${employee.getEmployeeDetail()}<h3>
+                            <h3 class="list-group-item"> <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><h3>
+                        </div>
+                    `
+            case 'Employee':
+                return /*html*/ `
+                        <div class="card" style="width: 18rem;">
+                        <div class="card-header">
+                            <h1>${employee.getRole()}<h1>
+                        </div>
+                            <h3 class="list-group-item">${employee.getName()}<h3>
+                            <h3 class="list-group-item">${employee.getId()}<h3>
+                            <h3 class="list-group-item">${employee.getEmployeeDetail()}<h3>
+                            <h3 class="list-group-item"> <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><h3>
+                        </div>
+                    `
+        }
+
+    })}
         </ul>
 
     `)
