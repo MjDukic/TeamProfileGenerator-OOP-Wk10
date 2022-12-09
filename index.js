@@ -122,6 +122,8 @@ function newEmployee() {
 
                     anotherEmployee()
                 })
+
+                
         }
     })
 
@@ -148,6 +150,7 @@ function anotherEmployee() {
 //how do i get it to show on html for the specific subclass without bug
 //how to connect bootstrap and style
 
+
 function renderHTMLFile() {
     fs.writeFileSync('./index.html', /*html*/ `
     <!DOCTYPE html>
@@ -157,7 +160,7 @@ function renderHTMLFile() {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MY TEAM</title>
+  <title>My Teams Profile</title>
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -168,22 +171,21 @@ function renderHTMLFile() {
 </head>
         <ul>
             ${employees.map(employee => /*html*/ `
-                <li>
-                    <div>
-                        <h1>${employee.getRole()}<h1>
-                        <h2>${employee.getName()}</h2>
-                        <h3>The ID : ${employee.getId()}<h3>
-                        <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}<a><br>
-                        <a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}<a>
-
-
-                    </div>
-                </li>
+                <div>
+                    <h1>${employee.getRole()}<h1>
+                    <h2>${employee.getName()}</h2>
+                    <h3>ID: ${employee.getId()}<h3>
+                    <h3>${employee.getEmployeeDetail()}<h3>
+                    <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}<a><br>
+                </div>
             `)}
         </ul>
 
     `)
 }
+
+
+
 
 
 
