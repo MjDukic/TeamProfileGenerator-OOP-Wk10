@@ -9,7 +9,7 @@ const Employee = require('./lib/Employee');
 const employees = []
 
 //inquirer app here to gather information about the team members, and generate the HTML file using fs
-// turned into one bug function 
+// turned into one big function 
 
 function newEmployee() {
     inquirer.prompt([
@@ -123,14 +123,13 @@ function anotherEmployee() {
         else renderHTMLFile()
     })
 }
+
+
+/* <div class="d-flex justify-content-between">...</div> ANOTHER OPTION FOR MAKING CARDS INTO COLUMNS */
+
+
 //when the employees get their name, write it in a file
 //using map bc we have an array and are trying to get an array
-
-//how to connect bootstrap and style
-
-/* <div class="d-flex justify-content-between">...</div> */
-
-
 function renderHTMLFile() {
     fs.writeFileSync('./index.html', /*html*/ `
     <!DOCTYPE html>
@@ -156,7 +155,7 @@ function renderHTMLFile() {
         switch (employee.getRole()) {
             case 'Manager':
                 return /*html*/ `
-                        <div class="card" style="width: 18rem;" style= "margin: 5px;">
+                        <div class="card" style="width: 18rem;" style= "margin: 10px;">
                         <div class="card-header">
                             <h1>${employee.getRole()}<h1>
                         </div>
@@ -174,7 +173,7 @@ function renderHTMLFile() {
                         </div>
                             <h3 class="list-group-item">${employee.getName()}<h3>
                             <h3 class="list-group-item">${employee.getId()}<h3>
-                            <h3 class="list-group-item"> <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><h3>
+                            <h3 class="list-group-item"><a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><h3>
                             <h3 class="list-group-item"><a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}</a><h3>
                         </div>`
             case 'Intern':
@@ -186,17 +185,13 @@ function renderHTMLFile() {
                             <h3 class="list-group-item">${employee.getName()}<h3>
                             <h3 class="list-group-item">${employee.getId()}<h3>
                             <h3 class="list-group-item">${employee.getEmployeeDetail()}<h3>
-                            <h3 class="list-group-item"> <a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><h3>
+                            <h3 class="list-group-item"><a href="mailto: ${employee.getEmail()}">${employee.getEmail()}</a><h3>
                         </div>`
         }
 
     })}
         </div>`)
 }
-
-
-
-
 
 
 newEmployee();

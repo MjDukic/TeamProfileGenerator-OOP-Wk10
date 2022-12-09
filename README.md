@@ -35,7 +35,9 @@ THEN I exit the application, and the HTML is generated
 
 The following image shows a mock-up of the generated HTML’s appearance and functionality:
 
-![HTML webpage titled “My Team” features five boxes listing employee names, titles, and other key info.](./Assets/10-object-oriented-programming-homework-demo.png)
+![Screenshot of Teams Profile Page](./Assets/ScreenshotTeamsProfile.png)
+
+![Screenshot of Teams Profile Page] (https://drive.google.com/file/d/1952kyK9IGq26sHPcxjmpAYua1jq2OEj5/view)
 
 The styling in the image is just an example, so feel free to add your own.
 

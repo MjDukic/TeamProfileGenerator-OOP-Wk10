@@ -1,6 +1,6 @@
+/*for the main div in html*/
 .main {
     display: flex;
     justify-content: space-between;
-
     /* gap: 30px; */
 }
